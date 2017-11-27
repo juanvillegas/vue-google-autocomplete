@@ -113,6 +113,7 @@ Gets triggered when the address data got obtained. This data is available on the
 
 #### no-results-found
 Gets triggered when a user entered the name of a Place that was not suggested and pressed the Enter key, or the Place Details request failed.
+* `object` returns an object with a property `name` representing the user's input
 
 #### focus
 Gets triggered when the autocomplete input field receives focus.
