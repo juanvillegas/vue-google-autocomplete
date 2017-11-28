@@ -96,6 +96,11 @@ Type: `String`|`Array`
 Default: null
 
 Option to restrict the autocomplete search to a particular country. Countries must be passed as a two-character, ISO 3166-1 Alpha-2 compatible country code (i.e. "br", "sg", "fr"). You can provide a single one, or an array of up to 5 country code strings.
+Note: this is a dynamic property. You must pass it as `:country=""` to your component, otherwise it won't work. For example:
+```html
+<vue-google-autocomplete :country="['au', 'nz']"></vue-google-autocomplete>
+```
+will restrict the countries to Australia and New Zealand.
 
 #### enable-geolocation
 Type: `Boolean`
@@ -121,8 +126,11 @@ Gets triggered when the autocomplete input field receives focus.
 #### blur
 Gets triggered when the autocomplete input field loses focus.
 
+#### inputChange
+Gets triggered every time autocomplete input got changed
+
 #### change
-Gets triggered when the autocomplete input got changed
+Gets triggered when the autocomplete results got changed
 
 #### keypress
 Gets triggered when a key gets pressed
@@ -192,12 +200,12 @@ Please note that you need to provide what method will listen (`v-on:placechanged
             * When the location found
             * @param {Object} addressData Data of the found location
             * @param {Object} placeResultData PlaceResult object
+            * @param {String} id Input container ID
             */
-            getAddressData: function (addressData, placeResultData) {
+            getAddressData: function (addressData, placeResultData, id) {
                 this.address = addressData;
             }
         }
     }
 </script>
 ```
-
